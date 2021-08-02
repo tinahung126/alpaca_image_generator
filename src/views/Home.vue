@@ -67,13 +67,27 @@
             ACCESSORIZE THE ALPACA'S
           </div>
           <div class="interaction__select-wrapper__category__item">
-            <button
+            <Selection
               v-for="category in categories"
               :key="categories.indexOf(category)"
-              class="circle-btn"
-            >
-              {{ category }}
-            </button>
+              :category="category"
+              @after-selected="handleSelected"
+            />
+          </div>
+        </div>
+        <div
+          v-if="isSelected"
+          class="interaction__select-wrapper__category--selected"
+        >
+          <div class="interaction__select-wrapper__category__title">
+            STYLE
+          </div>
+          <div class="interaction__select-wrapper__category__item">
+            <Selection
+              v-for="item in selected"
+              :key="selected.indexOf(item)"
+              :category="item"
+            />
           </div>
         </div>
       </div>
@@ -83,11 +97,15 @@
 
 <script>
 // @ is an alias to /src
+import Selection from './../components/Selection.vue'
 export default {
   name: 'Home',
+  components: {
+    Selection
+  },
   data () {
     return {
-      categories: ['Hair', 'Ears', 'Eyes', 'Leg', 'Mouth', 'Neck', 'Backgroundss'],
+      categories: ['Hair', 'Ears', 'Eyes', 'Leg', 'Mouth', 'Neck', 'Backgrounds'],
       decorations: {
         Hair: ['bang', 'curls', 'elegant', 'fancy', 'quiff', 'short'],
         Ears: ['tilt-backward', 'tilt-forward'],
@@ -96,7 +114,9 @@ export default {
         Mouth: ['astonished', 'eating', 'laugh', 'tongue'],
         Neck: ['bend-backward', 'bend-forward', 'thick'],
         Backgrounds: []
-      }
+      },
+      selected: [],
+      isSelected: false
 
     }
   },
@@ -111,6 +131,10 @@ export default {
       const images = {}
       folder.keys().map((item, index) => { images[item.replace('./', '')] = folder(item) })
       return images
+    },
+    handleSelected (category) {
+      this.isSelected = true
+      this.selected = [...this.decorations[category]]
     }
   }
 }
@@ -155,10 +179,15 @@ export default {
         }
       }
     }
-    &__select-wrapper__category__title{
-      @include text-style(16px, 600, $dark-blue);
-      margin-bottom: 10px;
-      margin-left: 10px;
+    &__select-wrapper__category{
+      &--selected{
+        margin-top: 10px;
+      }
+      &__title{
+        @include text-style(16px, 600, $dark-blue);
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
     }
 
 }
