@@ -1,4 +1,6 @@
 $dark-blue: #1B1F3B;
+$light-blue: #bcd1f2;
+
 
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 
@@ -15,4 +17,16 @@ $dark-blue: #1B1F3B;
   width: 80%;
   height: 100vh;
   display: flex;
+}
+.circle-btn{
+  width: fit-content;
+  min-width: 80px;
+  height: 40px;
+  margin: 6px;
+  padding: 10px 15px;
+  border-radius: 40px;
+  background-color: transparent;
+  color: #bcd1f2;
+  border: 1px solid #bcd1f2;
+  font-size: 16px;
 }

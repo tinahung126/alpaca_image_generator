@@ -64,10 +64,16 @@
       <div class="interaction__select-wrapper">
         <div class="interaction__select-wrapper__category">
           <div class="interaction__select-wrapper__category__title">
-            123
+            ACCESSORIZE THE ALPACA'S
           </div>
           <div class="interaction__select-wrapper__category__item">
-            456
+            <button
+              v-for="category in categories"
+              :key="categories.indexOf(category)"
+              class="circle-btn"
+            >
+              {{ category }}
+            </button>
           </div>
         </div>
       </div>
@@ -78,8 +84,35 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      categories: ['Hair', 'Ears', 'Eyes', 'Leg', 'Mouth', 'Neck', 'Backgroundss'],
+      decorations: {
+        Hair: ['bang', 'curls', 'elegant', 'fancy', 'quiff', 'short'],
+        Ears: ['tilt-backward', 'tilt-forward'],
+        Eyes: ['angry', 'naughty', 'panda', 'smart', 'star'],
+        Leg: ['bubble-tea', 'cookie', 'game-console', 'tilt-backward', 'tilt-forward'],
+        Mouth: ['astonished', 'eating', 'laugh', 'tongue'],
+        Neck: ['bend-backward', 'bend-forward', 'thick'],
+        Backgrounds: []
+      }
 
+    }
+  },
+  mounted () {
+    const images = this.importAll(require.context('./../assets/images/backgrounds', false, /\.(png|jpe?g|svg)$/))
+    for (const key of Object.entries(images)) {
+      this.decorations.Backgrounds.push(key[0].replace('.png', ''))
+    }
+  },
+  methods: {
+    importAll (folder) {
+      const images = {}
+      folder.keys().map((item, index) => { images[item.replace('./', '')] = folder(item) })
+      return images
+    }
+  }
 }
 
 </script>
@@ -121,6 +154,11 @@ export default {
           }
         }
       }
+    }
+    &__select-wrapper__category__title{
+      @include text-style(16px, 600, $dark-blue);
+      margin-bottom: 10px;
+      margin-left: 10px;
     }
 
 }
