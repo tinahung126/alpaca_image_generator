@@ -6,39 +6,33 @@
         <div class="interaction__left-content__image-wrapper">
           <div class="interaction__left-content__image-wrapper__bg">
             <img
-              src="./../assets/images/backgrounds/blue50.png"
-              alt=""
+              :src="require(`./../assets/images/backgrounds/${ (selectedCategory &&selectedCategory==='Backgrounds' && selectedItem) ? selectedItem : 'blue50'}.png`)"
+              alt="backgrounds"
             >
           </div>
           <div class="interaction__left-content__image-wrapper__body">
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                src="./../assets/images/ears/default.png"
-                alt=""
+                :src="require(`./../assets/images/ears/${ (selectedCategory &&selectedCategory==='Ears' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="ears"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                src="./../assets/images/hair/default.png"
-                alt=""
+                :src="require(`./../assets/images/hair/${ (selectedCategory &&selectedCategory==='Hair' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="Hair"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                src="./../assets/images/leg/default.png"
-                alt=""
+                :src="require(`./../assets/images/leg/${ (selectedCategory &&selectedCategory==='Leg' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="leg"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                src="./../assets/images/mouth/default.png"
-                alt=""
-              >
-            </div>
-            <div class="interaction__left-content__image-wrapper__body__items">
-              <img
-                src="./../assets/images/neck/default.png"
-                alt=""
+                :src="require(`./../assets/images/neck/${ (selectedCategory &&selectedCategory==='Neck' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="neck"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
@@ -49,8 +43,14 @@
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                src="./../assets/images/eyes/default.png"
-                alt=""
+                :src="require(`./../assets/images/eyes/${ (selectedCategory &&selectedCategory==='Eyes' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="eyes"
+              >
+            </div>
+            <div class="interaction__left-content__image-wrapper__body__items">
+              <img
+                :src="require(`./../assets/images/mouth/${ (selectedCategory &&selectedCategory==='Mouth' && selectedItem) ? selectedItem : 'default'}.png`)"
+                alt="mouth"
               >
             </div>
           </div>
@@ -71,6 +71,7 @@
               v-for="category in categories"
               :key="categories.indexOf(category)"
               :category="category"
+              :checked="selectedCategory===category"
               @after-selected="handleSelected"
             />
           </div>
@@ -87,6 +88,8 @@
               v-for="item in selected"
               :key="selected.indexOf(item)"
               :category="item"
+              :checked="selectedItem === item"
+              @after-selected="handleSelectedItem"
             />
           </div>
         </div>
@@ -116,7 +119,9 @@ export default {
         Backgrounds: []
       },
       selected: [],
-      isSelected: false
+      isSelected: false, // 控制style區塊是否出現
+      selectedCategory: '',
+      selectedItem: ''
 
     }
   },
@@ -133,8 +138,15 @@ export default {
       return images
     },
     handleSelected (category) {
+      this.selectedCategory = ''
+      this.selectedItem = ''
       this.isSelected = true
       this.selected = [...this.decorations[category]]
+      this.selectedCategory = category
+    },
+    handleSelectedItem (item) {
+      this.selectedItem = item
+      console.log(item)
     }
   }
 }

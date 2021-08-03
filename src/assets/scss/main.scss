@@ -1,5 +1,6 @@
 $dark-blue: #1B1F3B;
 $light-blue: #bcd1f2;
+$checked-blue: #00225a;
 
 
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
@@ -29,4 +30,10 @@ $light-blue: #bcd1f2;
   color: #bcd1f2;
   border: 1px solid #bcd1f2;
   font-size: 16px;
+  &.checked{
+    background-color: $checked-blue;
+    border: 1px solid $checked-blue;
+    color: white;
+    transition: all 0.2s ease-in;
+  }
 }

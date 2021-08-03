@@ -1,6 +1,7 @@
 <template>
   <button
     class="circle-btn"
+    :class="{checked:checked}"
     @click="selectItem"
   >
     {{ category }}
@@ -13,6 +14,10 @@ export default {
     category: {
       type: String,
       required: true
+    },
+    checked: {
+      type: Boolean,
+      default: false
     }
   },
   emits: {
