@@ -57,10 +57,19 @@
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
         <div class="interaction__left-content__btn-wrapper">
-          <button class="">
+          <button class="functional-btn">
+            <img
+              src="./../assets/icons/dices.svg"
+              alt=""
+            >
             Random
           </button>
-          <button>Download</button>
+          <button class="functional-btn">
+            <img
+              src="./../assets/icons/download.svg"
+              alt=""
+            >Download
+          </button>
         </div>
       </div>
       <div class="interaction__select-wrapper">
@@ -167,10 +176,11 @@ export default {
 <style scoped lang="scss">
 @import '../assets/scss/main.scss';
 .main__container{
-  width: 100%;
+  width: 80%;
   height: 80%;
   margin: auto auto;
   padding: 20px;
+}
   h1{
     font-family: 'Acme', sans-serif;
     @include text-style(50px, 500, $dark-blue);
@@ -202,6 +212,27 @@ export default {
           }
         }
       }
+      &__btn-wrapper{
+        display: grid;
+        width: 300px;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 16px;
+        margin-top: 16px;
+         .functional-btn{
+          background: #fff;
+          height: 40px;
+          width: 100%;
+          line-height: 40px;
+          margin-right: 16px;
+          display: flex;
+          justify-content: center;
+          img{
+            margin: auto 10px auto 0;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
     }
     &__select-wrapper__category{
       &--selected{
@@ -215,6 +246,4 @@ export default {
     }
 
 }
-}
-
 </style>

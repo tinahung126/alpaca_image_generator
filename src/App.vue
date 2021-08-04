@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+    id="app"
+    class="container"
+  >
     <router-view />
   </div>
 </template>
@@ -7,11 +10,8 @@
 <style scoped lang="scss">
 @import './assets/scss/main.scss';
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  background-color: #EEECEE;
 
+  width: 100%;
+}
 </style>
