@@ -6,32 +6,32 @@
         <div class="interaction__left-content__image-wrapper">
           <div class="interaction__left-content__image-wrapper__bg">
             <img
-              :src="require(`./../assets/images/backgrounds/${ (selectedCategory &&selectedCategory==='Backgrounds' && selectedItem) ? selectedItem : 'blue50'}.png`)"
+              :src="require(`./../assets/images/backgrounds/${ alpacaStyle.Backgrounds? alpacaStyle.Backgrounds : 'blue50'}.png`)"
               alt="backgrounds"
             >
           </div>
           <div class="interaction__left-content__image-wrapper__body">
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/ears/${ (selectedCategory &&selectedCategory==='Ears' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/ears/${ alpacaStyle.Ears? alpacaStyle.Ears : 'default'}.png`)"
                 alt="ears"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/hair/${ (selectedCategory &&selectedCategory==='Hair' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/hair/${ alpacaStyle.Hair ? alpacaStyle.Hair : 'default'}.png`)"
                 alt="Hair"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/leg/${ (selectedCategory &&selectedCategory==='Leg' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/leg/${ alpacaStyle.Leg ? alpacaStyle.Leg : 'default'}.png`)"
                 alt="leg"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/neck/${ (selectedCategory &&selectedCategory==='Neck' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/neck/${ alpacaStyle.Neck ? alpacaStyle.Neck : 'default'}.png`)"
                 alt="neck"
               >
             </div>
@@ -43,13 +43,13 @@
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/eyes/${ (selectedCategory &&selectedCategory==='Eyes' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/eyes/${ alpacaStyle.Eyes ? alpacaStyle.Eyes : 'default'}.png`)"
                 alt="eyes"
               >
             </div>
             <div class="interaction__left-content__image-wrapper__body__items">
               <img
-                :src="require(`./../assets/images/mouth/${ (selectedCategory &&selectedCategory==='Mouth' && selectedItem) ? selectedItem : 'default'}.png`)"
+                :src="require(`./../assets/images/mouth/${ alpacaStyle.Mouth ? alpacaStyle.Mouth : 'default'}.png`)"
                 alt="mouth"
               >
             </div>
@@ -57,7 +57,9 @@
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
         <div class="interaction__left-content__btn-wrapper">
-          <button>Random</button>
+          <button class="">
+            Random
+          </button>
           <button>Download</button>
         </div>
       </div>
@@ -121,7 +123,16 @@ export default {
       selected: [],
       isSelected: false, // 控制style區塊是否出現
       selectedCategory: '',
-      selectedItem: ''
+      selectedItem: '',
+      alpacaStyle: {
+        Hair: '',
+        Ears: '',
+        Eyes: '',
+        Leg: '',
+        Mouth: '',
+        Neck: '',
+        Backgrounds: ''
+      }
 
     }
   },
@@ -134,7 +145,7 @@ export default {
   methods: {
     importAll (folder) {
       const images = {}
-      folder.keys().map((item, index) => { images[item.replace('./', '')] = folder(item) })
+      folder.keys().map((item) => { images[item.replace('./', '')] = folder(item) })
       return images
     },
     handleSelected (category) {
@@ -145,8 +156,9 @@ export default {
       this.selectedCategory = category
     },
     handleSelectedItem (item) {
+      const category = this.selectedCategory
+      this.alpacaStyle[category] = item
       this.selectedItem = item
-      console.log(item)
     }
   }
 }
