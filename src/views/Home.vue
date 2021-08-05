@@ -3,7 +3,7 @@
     <h1>ALPACA GENERATOR</h1>
     <div class="interaction">
       <div class="interaction__left-content">
-        <div class="interaction__left-content__image-wrapper">
+        <div class="interaction__left-content__image-wrapper download-img">
           <div class="interaction__left-content__image-wrapper__bg">
             <img
               :src="require(`./../assets/images/backgrounds/${ alpacaStyle.Backgrounds? alpacaStyle.Backgrounds : 'blue50'}.png`)"
@@ -57,14 +57,20 @@
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
         <div class="interaction__left-content__btn-wrapper">
-          <button class="functional-btn">
+          <button
+            class="functional-btn"
+            @click.stop.prevent="randomStyle"
+          >
             <img
               src="./../assets/icons/dices.svg"
               alt=""
             >
             Random
           </button>
-          <button class="functional-btn">
+          <button
+            class="functional-btn"
+            @click.stop.prevent="downloadImg"
+          >
             <img
               src="./../assets/icons/download.svg"
               alt=""
@@ -112,6 +118,8 @@
 <script>
 // @ is an alias to /src
 import Selection from './../components/Selection.vue'
+import html2canvas from 'html2canvas'
+
 export default {
   name: 'Home',
   components: {
@@ -152,6 +160,20 @@ export default {
     }
   },
   methods: {
+    async downloadImg () {
+      const images = document.querySelector('.download-img')
+      const canvas = await html2canvas(images)
+      const imgData = canvas.toDataURL('image/jpeg');
+
+      (function (imgData) {
+        const downloadLink = document.createElement('a')
+        downloadLink.download = 'cuteAlpaca.jpeg' // set the name of the download file
+        downloadLink.href = imgData
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
+      })(imgData)
+    },
     importAll (folder) {
       const images = {}
       folder.keys().map((item) => { images[item.replace('./', '')] = folder(item) })
@@ -168,6 +190,12 @@ export default {
       const category = this.selectedCategory
       this.alpacaStyle[category] = item
       this.selectedItem = item
+    },
+    randomStyle () {
+      for (const item in this.decorations) {
+        const index = Math.floor(Math.random() * this.decorations[item].length)
+        this.alpacaStyle[item] = this.decorations[item][index]
+      }
     }
   }
 }
@@ -226,6 +254,10 @@ export default {
           margin-right: 16px;
           display: flex;
           justify-content: center;
+          &:hover{
+            box-shadow: 1px 1px 5px 0px rgba(143,140,140,0.75);
+            transition: box-shadow 0.2s ease-in;
+          }
           img{
             margin: auto 10px auto 0;
             width: 20px;
