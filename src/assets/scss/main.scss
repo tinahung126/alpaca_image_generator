@@ -1,0 +1,46 @@
+$dark-blue: #1B1F3B;
+$light-blue: #5695f6;
+$blue: #2A7BF4;
+$checked-blue: #00225a;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+@mixin text-style($size, $weight, $color, $cursor: auto) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  cursor: $cursor;
+}
+*{
+  font-family: 'Acme', sans-serif;
+
+}
+
+.container {
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+}
+.circle-btn{
+  width: fit-content;
+  min-width: 80px;
+  height: 45px;
+  margin: 6px;
+  padding: 12px 25px;
+  border-radius: 40px;
+  background-color: transparent;
+  color: $light-blue;
+  border: 1px solid $light-blue;
+  font-size: 16px;
+  &:hover{
+    color: $blue;
+    border: 2px solid $blue;
+    transition: all 0.2s ease-in;
+  }
+  &.checked{
+    background-color: $checked-blue;
+    border: 1px solid $checked-blue;
+    color: white;
+  }
+}
