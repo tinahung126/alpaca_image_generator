@@ -53,6 +53,14 @@
                 alt="mouth"
               >
             </div>
+            <div class="interaction__left-content__image-wrapper__body__items">
+              <template v-if="alpacaStyle.Accessories && alpacaStyle.Accessories !=='default'">
+                <img
+                  :src="require(`./../assets/images/accessories/${ alpacaStyle.Accessories}.png`)"
+                  alt="Accessories"
+                >
+              </template>
+            </div>
           </div>
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
@@ -105,7 +113,7 @@
               v-for="item in selected"
               :key="selected.indexOf(item)"
               :category="item"
-              :checked="selectedItem === item"
+              :checked="alpacaStyle[selectedCategory] === item"
               @after-selected="handleSelectedItem"
             />
           </div>
@@ -127,14 +135,15 @@ export default {
   },
   data () {
     return {
-      categories: ['Hair', 'Ears', 'Eyes', 'Leg', 'Mouth', 'Neck', 'Backgrounds'],
+      categories: ['Hair', 'Ears', 'Eyes', 'Leg', 'Mouth', 'Neck', 'Accessories', 'Backgrounds'],
       decorations: {
-        Hair: ['bang', 'curls', 'elegant', 'fancy', 'quiff', 'short'],
-        Ears: ['tilt-backward', 'tilt-forward'],
-        Eyes: ['angry', 'naughty', 'panda', 'smart', 'star'],
-        Leg: ['bubble-tea', 'cookie', 'game-console', 'tilt-backward', 'tilt-forward'],
-        Mouth: ['astonished', 'eating', 'laugh', 'tongue'],
-        Neck: ['bend-backward', 'bend-forward', 'thick'],
+        Hair: ['default', 'bang', 'curls', 'elegant', 'fancy', 'quiff', 'short'],
+        Ears: ['default', 'tilt-backward', 'tilt-forward'],
+        Eyes: ['default', 'angry', 'naughty', 'panda', 'smart', 'star'],
+        Leg: ['default', 'bubble-tea', 'cookie', 'game-console', 'tilt-backward', 'tilt-forward'],
+        Mouth: ['default', 'astonished', 'eating', 'laugh', 'tongue'],
+        Neck: ['default', 'bend-backward', 'bend-forward', 'thick'],
+        Accessories: ['default', 'earings', 'flower', 'glasses', 'headphone'],
         Backgrounds: []
       },
       selected: [],
@@ -148,6 +157,7 @@ export default {
         Leg: '',
         Mouth: '',
         Neck: '',
+        Accessories: '',
         Backgrounds: ''
       }
 
@@ -210,14 +220,13 @@ export default {
   padding: 20px;
 }
   h1{
-    font-family: 'Acme', sans-serif;
     @include text-style(50px, 500, $dark-blue);
     margin-bottom: 20px;
   }
   .interaction{
     display: flex;
     &__left-content{
-      margin-right: 20px;
+      margin-right: 40px;
       &__image-wrapper{
         width: 300px;
         height: 300px;
@@ -267,8 +276,13 @@ export default {
       }
     }
     &__select-wrapper__category{
+      &__item{
+        display: flex;
+            flex-wrap: wrap;
+
+      }
       &--selected{
-        margin-top: 10px;
+        margin-top: 16px;
       }
       &__title{
         @include text-style(16px, 600, $dark-blue);
