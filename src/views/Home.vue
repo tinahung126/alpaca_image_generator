@@ -65,25 +65,11 @@
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
         <div class="interaction__left-content__btn-wrapper">
-          <button
-            class="functional-btn"
-            @click.stop.prevent="randomStyle"
-          >
-            <img
-              src="./../assets/icons/dices.svg"
-              alt=""
-            >
-            Random
-          </button>
-          <button
-            class="functional-btn"
-            @click.stop.prevent="downloadImg"
-          >
-            <img
-              src="./../assets/icons/download.svg"
-              alt=""
-            >Download
-          </button>
+          <FunctionalBtn
+            @random-style="randomStyle"
+            @reset="reset"
+            @downloadImg="downloadImg"
+          />
         </div>
       </div>
       <div class="interaction__select-wrapper">
@@ -120,6 +106,7 @@
         </div>
       </div>
     </div>
+    <div class="animater" />
   </div>
 </template>
 
@@ -127,11 +114,13 @@
 // @ is an alias to /src
 import Selection from './../components/Selection.vue'
 import html2canvas from 'html2canvas'
+import FunctionalBtn from './../components/FunctionalBtn.vue'
 
 export default {
   name: 'Home',
   components: {
-    Selection
+    Selection,
+    FunctionalBtn
   },
   data () {
     return {
@@ -206,6 +195,11 @@ export default {
         const index = Math.floor(Math.random() * this.decorations[item].length)
         this.alpacaStyle[item] = this.decorations[item][index]
       }
+    },
+    reset () {
+      for (const item in this.alpacaStyle) {
+        this.alpacaStyle[item] = ''
+      }
     }
   }
 }
@@ -252,10 +246,15 @@ export default {
       &__btn-wrapper{
         display: grid;
         width: 300px;
+        grid-template-rows: 1fr 1fr ;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 16px;
         margin-top: 16px;
          .functional-btn{
+          &:first-child{
+            grid-column: 1/3;
+            margin-bottom: 16px;
+          }
           background: #fff;
           height: 40px;
           width: 100%;
@@ -292,4 +291,22 @@ export default {
     }
 
 }
+.animater{
+  background-image: url('./../assets/images/alpaca.png');
+  background-size: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  animation-name: alpaca;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes alpaca {
+  from {
+    margin-left: 0px;
+  }
+  to {
+    margin-left: 100%;
+  }
+}
+
 </style>
