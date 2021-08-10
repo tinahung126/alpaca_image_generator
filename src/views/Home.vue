@@ -65,7 +65,7 @@
           <div class="interaction__left-content__image-wrapper__decoration" />
         </div>
         <div class="interaction__left-content__btn-wrapper">
-          <FunctionalBtn
+          <FunctionalBtns
             @random-style="randomStyle"
             @reset="reset"
             @downloadImg="downloadImg"
@@ -106,7 +106,6 @@
         </div>
       </div>
     </div>
-    <div class="animater" />
   </div>
 </template>
 
@@ -114,13 +113,13 @@
 // @ is an alias to /src
 import Selection from './../components/Selection.vue'
 import html2canvas from 'html2canvas'
-import FunctionalBtn from './../components/FunctionalBtn.vue'
+import FunctionalBtns from './../components/FunctionalBtns.vue'
 
 export default {
   name: 'Home',
   components: {
     Selection,
-    FunctionalBtn
+    FunctionalBtns
   },
   data () {
     return {
@@ -162,16 +161,14 @@ export default {
     async downloadImg () {
       const images = document.querySelector('.download-img')
       const canvas = await html2canvas(images)
-      const imgData = canvas.toDataURL('image/jpeg');
-
-      (function (imgData) {
-        const downloadLink = document.createElement('a')
-        downloadLink.download = 'cuteAlpaca.jpeg' // set the name of the download file
-        downloadLink.href = imgData
-        document.body.appendChild(downloadLink)
-        downloadLink.click()
-        document.body.removeChild(downloadLink)
-      })(imgData)
+      const imgData = canvas.toDataURL('image/jpeg')
+      // set the name of the download file
+      const downloadLink = document.createElement('a')
+      downloadLink.download = 'cuteAlpaca.jpeg'
+      downloadLink.href = imgData
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
     },
     importAll (folder) {
       const images = {}
@@ -210,7 +207,7 @@ export default {
 .main__container{
   width: 80%;
   height: 80%;
-  margin: auto auto;
+  margin: 0 auto;
   padding: 20px;
 }
   h1{
@@ -290,23 +287,6 @@ export default {
       }
     }
 
-}
-.animater{
-  background-image: url('./../assets/images/alpaca.png');
-  background-size: 100px;
-  height: 100px;
-  background-repeat: no-repeat;
-  animation-name: alpaca;
-  animation-duration: 10s;
-  animation-timing-function: ease-in-out;
-}
-@keyframes alpaca {
-  from {
-    margin-left: 0px;
-  }
-  to {
-    margin-left: 100%;
-  }
 }
 
 </style>
