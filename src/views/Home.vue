@@ -212,9 +212,12 @@ export default {
 }
   h1{
     @include text-style(50px, 500, $dark-blue);
-    margin-bottom: 20px;
+    width: 95%;
+    margin: 20px auto;
   }
   .interaction{
+    width: 95%;
+    margin: auto;
     display: flex;
     &__left-content{
       margin-right: 40px;
@@ -272,13 +275,19 @@ export default {
       }
     }
     &__select-wrapper__category{
+
       &__item{
         display: flex;
-            flex-wrap: wrap;
+        flex-wrap: wrap;
+        max-height: 200px;
+      overflow-y: scroll;
 
       }
       &--selected{
         margin-top: 16px;
+        height: 45%;
+        max-height: 200px;
+        overflow-y: scroll;
       }
       &__title{
         @include text-style(16px, 600, $dark-blue);

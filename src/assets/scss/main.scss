@@ -35,7 +35,8 @@ $checked-blue: #00225a;
   font-size: 16px;
   &:hover{
     color: $blue;
-    border: 2px solid $blue;
+    border: 1px solid $blue;
+    background-color: #C8EAF9;
     transition: all 0.2s ease-in;
   }
   &.checked{

@@ -14,7 +14,7 @@
 <style scoped lang="scss">
 @import './assets/scss/main.scss';
 #app {
-  background-color: #EEECEE;
+  background-color: #A2DCF6;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -25,9 +25,9 @@
     display: flex;
     .animater{
       background-image: url('https://i.imgur.com/OW3IUzW.png');
-      background-size: 200px;
-      height: 200px;
-      width: 200px;
+      background-size: 180px;
+      height: 180px;
+      width: 180px;
       position: absolute;
       bottom: 0;
       left: 75%;
