@@ -9,7 +9,7 @@
 * 若想回到預設樣式可以點擊 Reset 重置造型。
 
 ## 專案畫面
-[Imgur](https://i.imgur.com/26Vq5jR.png)
+![alpaca](https://user-images.githubusercontent.com/69742330/129479333-5d0a95cf-5942-48dc-adbe-cd382c976afb.png)
 
 ## 下載專案
 ```
