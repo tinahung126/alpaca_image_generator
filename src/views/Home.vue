@@ -205,13 +205,11 @@ export default {
 <style scoped lang="scss">
 @import '../assets/scss/main.scss';
 .main__container{
-  width: 80%;
-  height: 80%;
+  width: 95%;
   margin: 0 auto;
-  padding: 20px;
 }
   h1{
-    @include text-style(50px, 500, $dark-blue);
+    @include text-style(30px, 500, $dark-blue);
     width: 95%;
     margin: 20px auto;
   }
@@ -219,8 +217,125 @@ export default {
     width: 95%;
     margin: auto;
     display: flex;
+    flex-direction: column;
     &__left-content{
-      margin-right: 40px;
+      margin: 0 auto 16px auto;
+      &__image-wrapper{
+        width: 90%;
+        margin:0 auto;
+        height: auto;
+        position: relative;
+        &__bg{
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        &__body{
+          &__items{
+            position: absolute;
+            top: 0;
+            left: 0;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+      &__btn-wrapper{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 8px;
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+    &__select-wrapper{
+      width: 100%;
+      margin: 0 auto;
+      &__category{
+
+        position: relative;
+        &__item{
+          display: flex;
+          max-height: 100px;
+          overflow-x: scroll;
+          white-space: nowrap
+
+        }
+        &--selected{
+          margin-top: 16px;
+          height: 45%;
+
+        }
+        &__title{
+          @include text-style(16px, 600, $dark-blue);
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
+      }
+    }
+}
+@media screen and (min-width: 480px) {
+
+  h1{
+    @include text-style(30px, 500, $dark-blue);
+    width: 95%;
+  }
+  .interaction{
+    flex-direction: row;
+    &__left-content{
+      margin-right: 20px;
+      width: 90%;
+      &__image-wrapper{
+        margin: 0;
+        width: 100%;
+      }
+      &__btn-wrapper{
+        display: grid;
+        width: 100%;
+        grid-template-rows: 1fr 1fr ;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 16px;
+        margin-top: 16px;
+
+      }
+    }
+    &__select-wrapper__category{
+      &__item{
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 150px;
+        overflow-y: scroll;
+
+      }
+      &--selected{
+        margin-top: 16px;
+        height: 45%;
+
+      }
+      &__title{
+        @include text-style(16px, 600, $dark-blue);
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+    }
+
+}
+}
+@media screen and (min-width: 768px) {
+  .main__container{
+    width: 90%;
+  }
+  h1{
+    @include text-style(50px, 500, $dark-blue);
+
+  }
+  .interaction{
+    width: 95%;
+    &__left-content{
+      width: auto;
       &__image-wrapper{
         width: 300px;
         height: 300px;
@@ -250,28 +365,6 @@ export default {
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 16px;
         margin-top: 16px;
-         .functional-btn{
-          &:first-child{
-            grid-column: 1/3;
-            margin-bottom: 16px;
-          }
-          background: #fff;
-          height: 40px;
-          width: 100%;
-          line-height: 40px;
-          margin-right: 16px;
-          display: flex;
-          justify-content: center;
-          &:hover{
-            box-shadow: 1px 1px 5px 0px rgba(143,140,140,0.75);
-            transition: box-shadow 0.2s ease-in;
-          }
-          img{
-            margin: auto 10px auto 0;
-            width: 20px;
-            height: 20px;
-          }
-        }
       }
     }
     &__select-wrapper__category{
@@ -279,23 +372,20 @@ export default {
       &__item{
         display: flex;
         flex-wrap: wrap;
-        max-height: 200px;
-      overflow-y: scroll;
+        max-height: 170px;
+        overflow-y: scroll;
 
       }
       &--selected{
         margin-top: 16px;
         height: 45%;
-        max-height: 200px;
-        overflow-y: scroll;
+
       }
       &__title{
-        @include text-style(16px, 600, $dark-blue);
-        margin-bottom: 10px;
-        margin-left: 10px;
+        font-size: 20px;
       }
     }
 
 }
-
+}
 </style>

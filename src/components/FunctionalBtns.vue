@@ -36,10 +36,7 @@ export default {
 @import '../assets/scss/main.scss';
 
 .functional-btn{
-  &:first-child{
-    grid-column: 1/3;
-    margin-bottom: 16px;
-  }
+
   background: #fff;
   height: 40px;
   width: 100%;
@@ -57,4 +54,13 @@ export default {
     height: 20px;
   }
 }
+@media screen and (min-width: 480px){
+  .functional-btn{
+  &:first-child{
+    grid-column: 1/3;
+    margin-bottom: 16px;
+  }
+}
+}
+
 </style>

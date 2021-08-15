@@ -36,10 +36,29 @@ export default {
 @import '../assets/scss/main.scss';
 
 .functional-btn{
-  &:first-child{
-    grid-column: 1/3;
-    margin-bottom: 16px;
+  background: #fff;
+  height: 40px;
+  width: 30%;
+  line-height: 40px;
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  &:hover{
+    box-shadow: 1px 1px 5px 0px rgba(143,140,140,0.75);
+    transition: box-shadow 0.2s ease-in;
   }
+  img{
+    margin: auto 10px auto 0;
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (min-width: 480px) {
+  .functional-btn{
+  // &:first-child{
+  //   grid-column: 1/3;
+  //   margin-bottom: 16px;
+  // }
   background: #fff;
   height: 40px;
   width: 100%;
@@ -56,5 +75,6 @@ export default {
     width: 20px;
     height: 20px;
   }
+}
 }
 </style>

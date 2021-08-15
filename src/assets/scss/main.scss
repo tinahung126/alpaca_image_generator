@@ -11,20 +11,20 @@ $checked-blue: #00225a;
   font-weight: $weight;
   color: $color;
   cursor: $cursor;
-}
+};
 *{
   font-family: 'Acme', sans-serif;
 
-}
+};
 
 .container {
   margin: 0 auto;
-  height: 100vh;
+  height: fit-content;
   display: flex;
 }
 .circle-btn{
   width: fit-content;
-  min-width: 80px;
+  // min-width: 80px;
   height: 45px;
   margin: 6px;
   padding: 12px 25px;
@@ -43,5 +43,14 @@ $checked-blue: #00225a;
     background-color: $checked-blue;
     border: 1px solid $checked-blue;
     color: white;
+  }
+};
+
+@media screen and (min-width: 768px) {
+  .circle-btn{
+    font-size: 20px;
+    height: 42px;
+    line-height: 21px;
+    padding: 10px 24px;
   }
 }
