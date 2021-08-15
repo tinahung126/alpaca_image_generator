@@ -6,7 +6,7 @@
     <router-view />
     <div class="bg__container">
       <div class="animater" />
-      <div class="glass" />
+      <div class="grass" />
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
     width: 100%;
     height: 180px;
     display: flex;
-    .animater, .glass{
+    .animater, .grass{
       display: none;
     }
   }
@@ -40,7 +40,7 @@
     width: 100%;
     height: 180px;
     display: flex;
-    .animater, .glass{
+    .animater, .grass{
       display: block;
     }
     .animater{
@@ -57,7 +57,7 @@
       animation:  alpaca 1s linear infinite;
       z-index: 0;
     }
-    .glass{
+    .grass{
       background-image: url('https://i.imgur.com/2JCPPrD.png');
       height: 70px;
       z-index: 2;
@@ -67,12 +67,12 @@
       right: 0;
       background-repeat: repeat-x;
       background-position: 0 0;
-      animation: glass 15s linear infinite;
+      animation: grass 15s linear infinite;
     }
   }
 }
 }
-@keyframes glass{
+@keyframes grass{
   from{
     background-position-x:0;
   }
