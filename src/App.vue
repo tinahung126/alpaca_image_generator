@@ -14,8 +14,9 @@
 <style scoped lang="scss">
 @import './assets/scss/main.scss';
 #app {
-  background-color: #A2DCF6;
+  background:linear-gradient(0deg, rgba(162,220,246,1) 9%, rgba(111,217,249,1) 80%, rgba(58,202,245,1) 100%);
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;

@@ -212,6 +212,7 @@ export default {
     @include text-style(30px, 500, $dark-blue);
     width: 95%;
     margin: 20px auto;
+    text-align: center;
   }
   .interaction{
     width: 95%;
@@ -222,6 +223,7 @@ export default {
       margin: 0 auto 16px auto;
       &__image-wrapper{
         width: 90%;
+        max-width: 300px;
         margin:0 auto;
         height: auto;
         position: relative;
@@ -245,10 +247,10 @@ export default {
       }
       &__btn-wrapper{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-gap: 8px;
-        width: 100%;
-        margin: 8px 0;
+        width: 90%;
+        margin: 8px auto;
       }
     }
     &__select-wrapper{
@@ -282,6 +284,7 @@ export default {
   h1{
     @include text-style(30px, 500, $dark-blue);
     width: 95%;
+    text-align: left;
   }
   .interaction{
     flex-direction: row;
